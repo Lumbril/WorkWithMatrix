@@ -1,6 +1,7 @@
 #include "matrix.h"
+#include <iostream>
 
-Matrix::Matrix(int height, int width) {
+void Matrix::createZeroMatrix(int height, int width) {
     Matrix::height = height;
     Matrix::width = width;
 
@@ -15,6 +16,30 @@ Matrix::Matrix(int height, int width) {
         for (int j = 0; j < width; j++) {
             matrix[i][j] = 0;
         }
+    }
+}
+
+Matrix::Matrix(int height, int width) {
+    createZeroMatrix(height, width);
+}
+
+Matrix::Matrix(int sz, Type type) {
+    Matrix::height = sz;
+    Matrix::width = sz;
+
+    createZeroMatrix(Matrix::height, Matrix::width);
+
+    switch (type) {
+        case IDENTITY:
+            for (int i = 0; i < height; i++) {
+                Matrix::matrix[i][i] = 1;
+            }
+
+            break;
+        default:
+            std::cout << "wrong type\n"
+                    << "available types: 'IDENTITY'";
+            break;
     }
 }
 
@@ -47,4 +72,53 @@ double ** Matrix::getMatrix() {
     }
 
     return copyMatrix;
+}
+
+Matrix * Matrix::mult(double alpha) {
+    Matrix * b = new Matrix(Matrix::getHeigth(), Matrix::getWidth());
+    b->init(Matrix::matrix);
+
+    for (int i = 0; i < Matrix::height; i++) {
+        for (int j = 0; j < Matrix::width; j++) {
+            b->setItem(i, j, matrix[i][j] * alpha);
+        }
+    }
+
+    return b;
+}
+
+Matrix * Matrix::mult(Matrix * b) {
+    try {
+        if (Matrix::height == b->getSize().second && Matrix::width == b->getSize().first) {
+
+        } else {
+            throw -1;
+        }
+    } catch(int a) {
+        std::cout << "Not correct size matrixes";
+    }
+}
+
+Matrix * Matrix::T() {
+    Matrix * b = new Matrix(Matrix::getWidth(), Matrix::getHeigth());
+
+    for (int i = 0; i < Matrix::height; i++) {
+        for (int j = 0; j < Matrix::width; j++) {
+            b->setItem(j, i, Matrix::matrix[i][j]);
+        }
+    }
+
+    return b;
+}
+
+void Matrix::show() {
+    std::cout << '\n';
+
+    for (int i = 0; i < Matrix::height; i++) {
+        for (int j = 0; j < Matrix::width; j++) {
+            std::cout << getItem(i, j) << " ";
+        }
+
+        std::cout << '\n';
+    }
 }
