@@ -41,6 +41,8 @@ public:
 
     void init(double ** matrix);
 
+    Matrix * add(Matrix * b);
+
     Matrix * mult(double alpha);
 
     Matrix * mult(Matrix * b);

@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1612967311 source:c:\users\vitaliy\desktop\git\workwithmatrix\workwithmatrix\matrix.cpp
+1612971415 source:c:\users\vitaliy\desktop\git\workwithmatrix\workwithmatrix\matrix.cpp
 	"matrix.h"
 	<iostream>
 
-1612967207 c:\users\vitaliy\desktop\git\workwithmatrix\workwithmatrix\matrix.h
+1612970401 c:\users\vitaliy\desktop\git\workwithmatrix\workwithmatrix\matrix.h
 	<utility>
 
-1612967886 source:c:\users\vitaliy\desktop\git\workwithmatrix\workwithmatrix\main.cpp
+1612971370 source:c:\users\vitaliy\desktop\git\workwithmatrix\workwithmatrix\main.cpp
 	<iostream>
 	"matrix.h"
 

@@ -74,6 +74,26 @@ double ** Matrix::getMatrix() {
     return copyMatrix;
 }
 
+Matrix * Matrix::add(Matrix * b) {
+    try {
+        if (Matrix::height == b->getHeigth() && Matrix::width == b->getWidth()) {
+            Matrix * c = new Matrix(Matrix::height, Matrix::width);
+
+            for (int i = 0; i < Matrix::height; i++) {
+                for (int j = 0; j < Matrix::width; j++) {
+                    c->setItem(i, j, Matrix::matrix[i][j] + b->getItem(i, j));
+                }
+            }
+
+            return c;
+        } else {
+            throw -1;
+        }
+    } catch (int a) {
+        std::cout << "Not correct size matrices\n";
+    }
+}
+
 Matrix * Matrix::mult(double alpha) {
     Matrix * b = new Matrix(Matrix::getHeigth(), Matrix::getWidth());
     b->init(Matrix::matrix);
@@ -110,7 +130,7 @@ Matrix * Matrix::mult(Matrix * b) {
             throw -1;
         }
     } catch(int a) {
-        std::cout << "Not correct size matrixes";
+        std::cout << "Not correct size matrices";
     }
 }
 
