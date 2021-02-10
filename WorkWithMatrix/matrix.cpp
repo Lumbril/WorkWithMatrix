@@ -89,8 +89,23 @@ Matrix * Matrix::mult(double alpha) {
 
 Matrix * Matrix::mult(Matrix * b) {
     try {
-        if (Matrix::height == b->getSize().second && Matrix::width == b->getSize().first) {
+        if (Matrix::width == b->getHeigth()) {
+            Matrix * c = new Matrix(Matrix::height, b->getWidth());
 
+            for (int i = 0; i < c->getHeigth(); i++) {
+                for (int j = 0; j < c->getWidth(); j++) {
+                    double sum = 0;
+
+                    for (int k = 0; k < Matrix::width; k++) {
+                        sum += Matrix::matrix[i][k] * b->getItem(k, j);
+                    }
+
+                    sum = sum > Matrix::EPS ? sum : 0;
+                    c->setItem(i, j, sum);
+                }
+            }
+
+            return c;
         } else {
             throw -1;
         }

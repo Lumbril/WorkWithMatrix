@@ -6,6 +6,7 @@ class Matrix{
 private:
     int height;
     int width;
+    double EPS = 1e-6;
     double ** matrix;
 
     void createZeroMatrix(int height, int width);
